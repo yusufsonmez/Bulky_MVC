@@ -1,7 +1,6 @@
-﻿using BulkyWeb.Data;
-using BulkyWeb.Models;
+﻿using Bulky.DataAccess.Data;
+using Bulky.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace BulkyWeb.Controllers
 {
@@ -24,9 +23,9 @@ namespace BulkyWeb.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            if(obj.Name == obj.DisplayOrder.ToString()) 
+            if (obj.Name == obj.DisplayOrder.ToString())
             {
-                ModelState.AddModelError("name","The display order cannot exactly match the Name.");
+                ModelState.AddModelError("name", "The display order cannot exactly match the Name.");
             }
             if (obj.Name != null && obj.Name.ToLower() == "test")
             {
@@ -43,7 +42,7 @@ namespace BulkyWeb.Controllers
         }
         public IActionResult Edit(int? id)
         {
-            if(id == null || id.Value == 0)
+            if (id == null || id.Value == 0)
             {
                 return NotFound();
             }
