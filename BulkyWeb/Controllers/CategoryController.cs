@@ -25,17 +25,17 @@ namespace BulkyWeb.Controllers
         {
             if (obj.Name == obj.DisplayOrder.ToString())
             {
-                ModelState.AddModelError("name", "The display order cannot exactly match the Name.");
+                ModelState.AddModelError("name", "The display order cannot exactly match the Name");
             }
             if (obj.Name != null && obj.Name.ToLower() == "test")
             {
-                ModelState.AddModelError("", "Test is an invalid value.");
+                ModelState.AddModelError("", "Test is an invalid value");
             }
             if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Add(obj);
                 _unitOfWork.Save();
-                TempData["Success"] = "Category created successfully.";
+                TempData["Success"] = "Category created successfully";
                 return RedirectToAction("Index");
             }
             return View();
@@ -63,7 +63,7 @@ namespace BulkyWeb.Controllers
             {
                 _unitOfWork.Category.Update(obj);
                 _unitOfWork.Save();
-                TempData["Success"] = "Category updated successfully.";
+                TempData["Success"] = "Category updated successfully";
                 return RedirectToAction("Index");
             }
             return View();
@@ -93,7 +93,7 @@ namespace BulkyWeb.Controllers
             {
                 _unitOfWork.Category.Remove(obj);
                 _unitOfWork.Save();
-                TempData["Success"] = "Category deleted successfully.";
+                TempData["Success"] = "Category deleted successfully";
                 return RedirectToAction("Index");
             }
             return View();
