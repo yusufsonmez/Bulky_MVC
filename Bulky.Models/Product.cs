@@ -30,5 +30,6 @@ namespace Bulky.Models
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")] // This Category Table has foreign key which will be CategoryId
         public Category Category { get; set; }
+        public string ImageUrl { get; set; }
     }
 }
