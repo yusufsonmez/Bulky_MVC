@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bulky.Models
 {
@@ -20,7 +15,7 @@ namespace Bulky.Models
         [Required]
         public string Author { get; set; }
         [Required]
-        [Display(Name ="List Price")]
+        [Display(Name = "List Price")]
         [Range(1, 1000)]
         public double ListPrice { get; set; }
         [Display(Name = "Price for 1-50")]
@@ -29,8 +24,11 @@ namespace Bulky.Models
         [Display(Name = "Price for 50+")]
         [Range(1, 1000)]
         public double Price50 { get; set; }
-        [Display(Name ="Price for 100+")]
+        [Display(Name = "Price for 100+")]
         [Range(1, 1000)]
         public double Price100 { get; set; }
+        public int CategoryId { get; set; }
+        [ForeignKey("CategoryId")] // This Category Table has foreign key which will be CategoryId
+        public Category Category { get; set; }
     }
 }
