@@ -16,12 +16,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category
-                .GetAll().Select(u => new SelectListItem
-                {
-                    Text = u.Name,
-                    Value = u.Id.ToString()
-                });
+            
             return View(objProductList);
         }
         public IActionResult Create()
@@ -31,13 +26,15 @@ namespace BulkyWeb.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Create(Product obj)
         {
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Add(obj);
-                _unitOfWork.Save();
-                TempData["Success"] = "Product created successfully";
-                return RedirectToAction("Index");
-            }
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category
+                .GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                });
+
+            ViewBag.CategoryList = CategoryList;
+
             return View();
         }
         public IActionResult Edit(int? id)
