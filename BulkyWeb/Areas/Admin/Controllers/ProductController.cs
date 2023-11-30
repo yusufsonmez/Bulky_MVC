@@ -21,11 +21,6 @@ namespace BulkyWeb.Areas.Admin.Controllers
         }
         public IActionResult Create()
         {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Create(Product obj)
-        {
             IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category
                 .GetAll().Select(u => new SelectListItem
                 {
@@ -33,8 +28,14 @@ namespace BulkyWeb.Areas.Admin.Controllers
                     Value = u.Id.ToString()
                 });
 
-            ViewBag.CategoryList = CategoryList;
+            //ViewBag.CategoryList = CategoryList;
+            ViewData["CategoryList"] = CategoryList;
 
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(Product obj)
+        {
             return View();
         }
         public IActionResult Edit(int? id)
