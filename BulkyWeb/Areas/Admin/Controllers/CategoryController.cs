@@ -48,9 +48,6 @@ namespace BulkyWeb.Areas.Admin.Controllers
                 return NotFound();
             }
             Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
-            // Diffirent ways to get the category from db.
-            //Category categoryFromDb = _db.Categories.FirstOrDefault(c => c.Id == id);
-            //Category categoryFromDb = _db.Categories.Where(c => c.Id == id).FirstOrDefault();
             if (categoryFromDb == null)
             {
                 return NotFound();
