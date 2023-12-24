@@ -45,7 +45,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
         {
             if (id == null || id.Value == 0)
             {
-                return NotFound();
+                return NotFound(); 
             }
             Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
             if (categoryFromDb == null)
